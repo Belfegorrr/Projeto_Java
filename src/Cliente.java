@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 /**
  * @author iago_fernandes
  */
@@ -7,11 +9,11 @@ public class Cliente {
     private Long cpf;
     private Long tel;
     private String end;
-    private Integer numero;
+    private String numero;
     private String cidade;
     private String estado;
         
-    public Cliente(String nome, Long cpf, Long tel, String end, Integer numero, String cidade, String estado) {
+    public Cliente(String nome, String cpf, String tel, String end, String numero, String cidade, String estado) {
         this.nome = nome;
         this.cpf = Long.valueOf(cpf);
         this.tel = Long.valueOf(tel);
@@ -21,10 +23,6 @@ public class Cliente {
         this.estado = estado;
     }
     
-    
-    
-
-
     public String getNome() {
         return nome;
     }
@@ -49,10 +47,10 @@ public class Cliente {
     public void setEnd(String end) {
         this.end = end;
     }
-    public Integer getNumero() {
+    public String getNumero() {
         return numero;
     }
-    public void setNumero(Integer numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
     public String getCidade() {
@@ -68,35 +66,24 @@ public class Cliente {
         this.estado = estado;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
-        return result;
+   @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cliente cliente = (Cliente) o;
+        return Objects.equals(cpf, cliente.cpf);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Cliente other = (Cliente) obj;
-        if (cpf == null) {
-            if (other.cpf != null)
-                return false;
-        } else if (!cpf.equals(other.cpf))
-            return false;
-        return true;
+    public int hashCode() {
+        return Objects.hash(cpf);
     }
 
     @Override
     public String toString() {
-        return "Cliente [nome=" + nome + ", cpf=" + cpf + "]";
+        return "Cliente{" +
+                "nome='" + nome + '\'' +
+                ", cpf=" + cpf +
+                '}';
     }
-
-
 }
