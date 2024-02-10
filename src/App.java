@@ -23,10 +23,20 @@ public class App {
                 sair();
             } else if (isCadastro(opcao)){
                 String dados = JOptionPane.showInputDialog(null,
-            "Digite os dados do cliente separados por virgula, conforme exemplo: Nome, CPF, Telefone",
+            "Digite os dados do cliente separados por virgula, conforme exemplo: Nome, CPF, Telefone, Endereço, Número, Cidade e Estado",
             "Cadastro", JOptionPane.INFORMATION_MESSAGE);
             cadastrar(dados);
+            } else if (isConsultar(opcao)) {
+                String dados = JOptionPane.showInputDialog(null,
+            "Digite o CPF",
+            "Consultar", JOptionPane.INFORMATION_MESSAGE);
+
+            consultar(dados);
             }
+
+            opcao = JOptionPane.showInputDialog(null,
+            "OPÇÃO INVÁLIDA. Digite 1 para cadastro, 2 para consultar, 3 para exclusão, 4 para alteração ou 5 para sair",
+            "Cadastro", JOptionPane.INFORMATION_MESSAGE);
         }
 
 
@@ -34,6 +44,21 @@ public class App {
         if (isOpcaoCadastro(opcao)){
             JOptionPane.showMessageDialog(null, "Opcao: " + opcao, "ERRO", 0);
         }
+    }
+    private static void consultar(String dados) {
+        Cliente cliente = iClienteDAO.consultar(Long.parseLong(dados));
+        if( cliente != null){
+            JOptionPane.showMessageDialog(null, "Cliente encontrado: " + cliente.toString(), "Sucesso",JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Cliente não encontrado", "Error",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    private static boolean isConsultar(String opcao) {
+        if("2".equals(opcao)){
+            return true;
+        } 
+        return false;
     }
     private static void cadastrar(String dados) {
         String[] dadosSeparados = dados.split(",");
