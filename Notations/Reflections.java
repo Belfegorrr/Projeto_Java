@@ -20,16 +20,16 @@ public class Reflections {
 
         for (Field field : prod.getClass().getDeclaredFields()){
             if(field.isAnnotationPresent(IAnotacao.class)){
-                IAnotacao n = field.getAnnotation(IAnotacao.class);
-                System.out.println("Nome da anotação: " + n.getClass().getName());
-                System.out.println("Valor da anotação: " + n.value());
+                IAnotacao an = field.getAnnotation(IAnotacao.class);
+                System.out.println("Nome da anotação: " + an.getClass().getName());
+                System.out.println("Valor da anotação: " + an.value());
 
             }
         }
         if(prod.getClass().isAnnotationPresent(IAnotacao.class)){
-            IAnotacao n = prod.getClass().getAnnotation(IAnotacao.class);
-            System.out.println("Nome da anotação: " + n.getClass().getName());
-            System.out.println("Valor da anotação: " + n.value());
+            IAnotacao an = prod.getClass().getAnnotation(IAnotacao.class);
+            System.out.println("Nome da anotação: " + an.getClass().getName());
+            System.out.println("Valor da anotação: " + an.value());
         }
     }    
 }
