@@ -38,18 +38,9 @@ public class Lista {
 
         } while (controle == 's' || controle == 'S');
 
-        //  System.out.println("*** Coleções Feminino SEM LAMBDA ***");
-        // for(ColecoesFeminino j: listaFeminino){
-        //     System.out.println(j);
-        // }
-        //  System.out.println("*** Coleções Feminino COM LAMBDA ***");
-        // for(ColecoesFeminino j: listaFeminino){
-        //     System.out.println(j);
-        // }
-
         Stream<ColecoesFeminino> streamList = listaFeminino.stream()
-        .filter(feminino -> feminino.getSexo().equals("f"));
-        System.out.println(streamList);    
+        .filter(feminino -> feminino.getSexo().equalsIgnoreCase("f"));
+        streamList.map(ColecoesFeminino::getNome).forEach(System.out::println);
     }
 }
 
